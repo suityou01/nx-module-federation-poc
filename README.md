@@ -74,7 +74,7 @@ export const appRoutes: Route[] = [
 
 ```
 
-7. Expose new standalong component in modulefederation
+7. Expose new standalone component in modulefederation
 
 ```ts
 import { ModuleFederationConfig } from '@nx/module-federation';
@@ -92,6 +92,30 @@ const config: ModuleFederationConfig = {
  **/
 export default config;
 ```
+
+8. Add to main.ts in shell app
+```ts
+import { setRemoteDefinitions } from '@nx/angular/mf';
+
+fetch('/assets/module-federation.manifest.json')
+  .then((res) => res.json())
+  .then((definitions) => setRemoteDefinitions(definitions))
+  .then(() => import('./bootstrap').catch((err) => console.error(err)));
+```
+
+9. Add file assets/module-federation.manifest.json
+```
+{
+  "login": "http://localhost:4201"
+}
+```
+
+10. Add asset location to apps/dashboard/project.json
+
+```
+"apps/dashboard/src/assets"
+```
+
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 

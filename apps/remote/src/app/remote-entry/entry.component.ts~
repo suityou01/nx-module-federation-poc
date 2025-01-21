@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NxWelcomeComponent } from './nx-welcome.component';
+
+@Component({
+  imports: [CommonModule, NxWelcomeComponent],
+  selector: 'mfe-poc-remote-entry',
+  template: `<mfe-poc-nx-welcome></mfe-poc-nx-welcome>`,
+})
+export class RemoteEntryComponent {}
